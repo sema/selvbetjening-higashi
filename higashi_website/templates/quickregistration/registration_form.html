@@ -1,0 +1,18 @@
+{% extends "site.html" %}
+{% load crispy_forms_tags %}
+
+{% block extrastyle %}
+{{ block.super }}
+{% include "form_includes.html" %}
+{% endblock %}
+
+{% block contenthead %}Opret bruger{% endblock %}
+
+{% block content %}
+<p>En bruger vil give dig adgang til at tilmelde dig alle vores arrangementer.</p>
+
+{% with form.helper as helper %}
+    {% crispy form helper %}
+{% endwith %}
+
+{% endblock %}

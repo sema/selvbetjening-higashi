@@ -1,0 +1,17 @@
+
+#copyright {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+#copyright a {
+    color: #000000;
+}
+
+form .row {
+    margin-left: 0em;
+}
+
+form .row .control-group {
+    float: left;
+}

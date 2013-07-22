@@ -1,0 +1,33 @@
+{% extends "events/base_event.html" %}
+{% load crispy_forms_tags %}
+
+{% block extrastyle %}
+{{ block.super }}
+{% include "form_includes.html" %}
+{% endblock %}
+
+{% block contenthead %}<a href="{% url "eventregistration_information" event.pk %}">{{ event.title }}</a>: Tilmeld{% endblock %}
+
+{% block content %}
+
+<form action="" method="POST">
+{% csrf_token %}
+
+{% with form.helper as helper %}
+    {% crispy form helper %}
+{% endwith %}
+
+{% if event.has_options %}
+<h3>Tilvalg</h3>
+
+{% include "eventregistration/parts/options.html" %}
+{% endif %}
+
+{{ signup_parts|safe }}
+<div class="form-actions">
+	<input type="submit" class="btn btn-primary" name="Tilmeld" value="Tilmeld" />
+</div>
+
+</form>
+
+{% endblock %}

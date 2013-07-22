@@ -1,0 +1,74 @@
+{% load static from staticfiles %}<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Anime Higashi</title>
+
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/datepicker.css' %}" media="screen, projection" />
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+        <script src="{% static 'js/bootstrap-datepicker.js' %}" type="text/javascript"></script>
+
+        {% block extrastyle %}{% endblock %}
+    </head>
+
+<body>
+
+<div class="container">
+
+	{% block header %}
+    <div class="row">
+
+        <div class="span12">
+
+            <ul class="nav nav-pills" style="float: right;">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url "members_editprofile" %}">Rediger profil</a></li>
+                    <li><a href="{% url "members_password_change" %}">Ændre kodeord</a></li>
+                    <li><a href="{% url "members_logout" %}">Log ud</a></li>
+
+                    {% else %}
+                    <li><a href="{% url "quickregistration_register" %}">Opret bruger</a></li>
+                    <li><a href="{% url "members_login" %}">Log ind</a></li>
+                    {% endif %}
+            </ul>
+
+            <div class="page-header">
+                <h1><a href="{% url "home" %}">Anime Higashi</a></h1>
+            </div>
+
+            {% block sub_sub_content_head %}<h2>{% block contenthead %}{% endblock %}</h2>{% endblock %}
+
+        </div>
+
+    </div>
+
+    {% block sub_content_head %}{% endblock %}
+
+    {% endblock %}
+
+	{% if messages or session_message %}
+			{% for message in messages %}
+			    <p class="alert alert-success">{{ message }} <a class="close" data-dismiss="alert" href="#">&times;</a></p>
+			{% endfor %}
+			{% if session_message %}
+                <p class="alert alert-success">{{session_message}} <a class="close" data-dismiss="alert" href="#">&times;</a></p>
+			{% endif %}
+	{% endif %}
+
+	{% block content %}{% endblock %}
+
+</div>
+
+<div class="row"><br/><br/>
+    <p id="copyright"><small>Powered by <a href="https://github.com/animekita/selvbetjening">Selvbetjening</a></small></p>
+</div>
+
+</body>
+</html>

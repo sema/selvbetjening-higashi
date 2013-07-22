@@ -1,0 +1,21 @@
+{% extends "events/base_event.html" %}
+{% load crispy_forms_tags %}
+
+{% block extrastyle %}
+{{ block.super }}
+{% include "form_includes.html" %}
+{% endblock %}
+
+
+{% block contenthead %}<a href="{% url "eventregistration_information" event.pk %}">{{ event.title }}</a>: Afmeld{% endblock %}
+
+{% block content %}
+
+<p>Ved at afmelde dig arrangementet vil du blive fjernet fra vores deltagerliste, du vil til have mulighed
+for at tilmelde dig arrangementet igen hvis du ombestemmer dig.</p>
+
+{% with form.helper as helper %}
+    {% crispy form helper %}
+{% endwith %}
+
+{% endblock %}
