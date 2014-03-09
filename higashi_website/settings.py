@@ -38,7 +38,7 @@ INSTALLED_APPS.extend([
 
 POLICY['PORTAL.EVENTREGISTRATION.SKIP_CONFIRMATION_ON_EMPTY_OPTIONS'] = True
 
-LOGIN_URL = '/'
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 # import localsettings, a per deployment configuration file
